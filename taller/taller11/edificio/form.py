@@ -1,4 +1,5 @@
 from django.forms import ModelForm
+from django import forms
 from .models import Departamento, Edificio
 from django.utils.translation import gettext_lazy as _
 
@@ -12,6 +13,13 @@ class EdificioForm(ModelForm):
             'tipo': _('Ingrese tipo por favor'),
             'ciudad': _('Ingrese ciudad por favor'),
         }
+    def clean_ciudad(self):
+        valor = self.cleaned_data['ciudad']
+        
+
+        if valor[0] == "L":
+            raise forms.ValidationError("El nombre de la ciudad no puede iniciar con la letra mayúscula L")
+        return valor      
 
 
 
@@ -31,5 +39,27 @@ class DepartamentoForm(ModelForm):
         
 
         if valor < 100.000:
-            raise forms.ValidationError("Ingrese dos apellidos por favor")
-        return valor    
+            raise forms.ValidationError("Costo de un departamento no puede ser mayor a $100 mil.")
+        return valor  
+    
+    def clean_num_cuartos(self):
+        valor = self.cleaned_data['num_cuartos']
+        
+
+        if valor < 0 or valor > 7:
+            raise forms.ValidationError("Número de cuartos no puede ser 0, ni mayor a 7.")
+        return valor  
+    
+    def clean_nombre_propietario(self):
+        valor = self.cleaned_data['nombre_propietario']
+        num_palabras = len(valor.split())
+        """
+        """
+
+        if num_palabras < 3:
+            raise forms.ValidationError("El nombre completo de un propietario no debe tener menos de 3 palabras.")
+        return valor
+    
+    
+
+
