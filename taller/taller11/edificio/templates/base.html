@@ -22,9 +22,9 @@
     <h1>Aplicación Administración </h1>
     <nav class="top_menu">
       <ul>
-        <li><a href="">inicio</a></li>
-        <li><a href="">agregar edificio</a></li>
-        <li><a href="">agregar departamento</a></li>
+        <li><a href="{% url 'list_edificios' %}">inicio</a></li>
+        <li><a href="{% url 'edificio_create' %}">agregar edificio</a></li>
+        <li><a href="{% url 'departamento_create' %}">agregar departamento</a></li>
       </ul>
     </nav>
   </header>

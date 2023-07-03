@@ -13,7 +13,7 @@ class EstudianteForm(ModelForm):
             'nombre': _('Ingrese nombre por favor'),
             'apellido': _('Ingrese apellido por favor'),
             'cedula': _('Ingrese cédula por favor'),
-            'correo': _('Ingrese correo por favor'),
+            'ciudad': _('Ingrese ciudad por favor'),
         }
 
 

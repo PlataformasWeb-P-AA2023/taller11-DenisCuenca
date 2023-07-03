@@ -17,6 +17,7 @@
       <th>listado departamentos</th>
       <th>total de cuatos</th>
       <th>costo total</th>
+      <th>opciones</th>
     </tr>
   </thead>
 
@@ -30,24 +31,21 @@
       <ul>
         {% for t in e.departamentos.all %}
           <li>
-            <span>{{t.nombre_propietario}} - {{t.costo}} - [<a href="">editar</a>] </span>
+            <span>{{t.nombre_propietario}} - {{t.costo}} - [<a href="{% url 'departamento_edit' t.id %}">editar</a>] [<a href="{% url 'eliminar_departamento' t.id %}"onclick="return confirm('¿Está seguro de la eliminación?')" >
+                eliminar</a>] </span>
           </li>
         {% endfor %}
       </ul>
       
         
+      <td> {{e.obtener_num_cuartos}}</td>
+      <td> {{e.obtener_total}}</td>
     </td>
 
-    <td> {% for t in e.departamentos.all %}
-        <li>
-          <span>{{t.nombre_propietario}} - {{t.costo}} - [<a href="">editar</a>] </span>
-        </li>
-      {% endfor %}</td>
 
-
-    <td> <a href="">ver</a> <br>
-      <a href="">editar</a> <br>
-      <a href=""
+    <td>  
+      <a href="{% url 'edificio_edit' e.id %}">editar</a> <br>
+      <a href="{% url 'eliminar_ed' e.id %}"
       onclick="return confirm('¿Está seguro de la eliminación?')" >
       eliminar</a>
     </td>
