@@ -1,0 +1,39 @@
+{% extends "master.html" %}
+
+{% block content %}
+<h2>Crear Estudiante</h3>
+
+<form action="" method="post">
+
+  {% csrf_token %}
+
+  {{ formulario.non_field_errors }}
+  <div class="fieldWrapper">
+    {{ formulario.nombre.errors }}
+    <label for="{{ formulario.nombre.id_for_label }}">Ingrese Nombre:</label>
+    {{ formulario.nombre }}
+  </div>
+  <br>
+  <div class="fieldWrapper">
+    {{ formulario.apellido.errors }}
+    <label for="{{ formulario.apellido.id_for_label }}">Ingrese Apellido:</label>
+    {{ formulario.apellido }}
+  </div>
+  <br>
+  <div class="fieldWrapper">
+    {{ formulario.cedula.errors }}
+    <label for="{{ formulario.cedula.id_for_label }}">Ingrese Cédula:</label>
+    {{ formulario.cedula }}
+  </div>
+  <br>
+  <div class="fieldWrapper">
+    {{ formulario.correo.errors }}
+    <label for="{{ formulario.correo.id_for_label }}">Ingrese Correo:</label>
+    {{ formulario.correo }}
+  </div>
+
+  <p><input type='submit' value='Agregar'/></p>
+
+</form>
+
+{% endblock %}
