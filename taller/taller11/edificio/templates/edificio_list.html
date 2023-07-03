@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Listado de edificio | {{ block.super }}
+{% endblock %}
+
+{% block content %}
+
+<table id="tabla_datos">
+
+  <thead>
+    <tr>
+      <th>nombre</th>
+      <th>dirección</th>
+      <th>ciudad</th>
+      <th>tipo </th>
+      <th>listado departamentos</th>
+      <th>total de cuatos</th>
+      <th>costo total</th>
+    </tr>
+  </thead>
+
+  {% for e in edificios %}
+  <tr>
+    <td> {{e.nombre}} </td>
+    <td> {{e.direccion}}</td>
+    <td> {{e.ciudad}}</td>
+    <td> {{e.tipo}}</td>
+    <td>
+      <ul>
+        {% for t in e.departamentos.all %}
+          <li>
+            <span>{{t.nombre_propietario}} - {{t.costo}} - [<a href="">editar</a>] </span>
+          </li>
+        {% endfor %}
+      </ul>
+      
+        
+    </td>
+
+    <td> {% for t in e.departamentos.all %}
+        <li>
+          <span>{{t.nombre_propietario}} - {{t.costo}} - [<a href="">editar</a>] </span>
+        </li>
+      {% endfor %}</td>
+
+
+    <td> <a href="">ver</a> <br>
+      <a href="">editar</a> <br>
+      <a href=""
+      onclick="return confirm('¿Está seguro de la eliminación?')" >
+      eliminar</a>
+    </td>
+
+  </tr>
+  {% endfor %}
+</table>
+
+<script type="text/javascript">
+  $(document).ready( function () {
+    $('#tabla_datos').DataTable();
+  });
+</script>
+
+{% endblock %}
